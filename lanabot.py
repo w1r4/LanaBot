@@ -176,9 +176,9 @@ def main():
     signal.signal(signal.SIGINT, sigHandler) 
 
     # Display banner from file
-    with open("banner") as f:
-        data = f.read()
-        print data
+    #with open("banner") as f:
+    #    data = f.read()
+    #    print data
  
     # Main loop
     last_update_id = None
