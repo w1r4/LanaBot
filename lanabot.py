@@ -2,7 +2,7 @@ import json
 import requests
 import time
 import urllib 
-import ConfigParser
+import configparser
 import logging
 import signal
 import sys
@@ -114,7 +114,7 @@ def getWeather(place):
 # Send URL-encoded message to chat id
 def sendMessage(text, chatId, interface=None):
     text = text.encode('utf-8', 'strict')                                                       
-    text = urllib.quote_plus(text)
+    text = urllib.parse.quote_plus(text)
     url = URL + "sendMessage?text={}&chat_id={}&parse_mode=Markdown".format(text, chatId)
     if interface:
         url += "&reply_markup={}".format(interface)
