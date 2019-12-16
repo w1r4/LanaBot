@@ -27,7 +27,7 @@ logger = logging.getLogger("LanaBot")
 logger.setLevel(logging.DEBUG)
 
 # Cities for weather requests
-cities = ["London", "Brasov"]
+cities = ["Jakarta", "Bekasi"]
 
 def sigHandler(signal, frame):
     logger.info("SIGINT received. Exiting... Bye bye")
