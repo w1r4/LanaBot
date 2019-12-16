@@ -61,7 +61,7 @@ def parseConfig():
     #OWM_KEY = c.get("Settings", "OWM_KEY")
     URL_OWM = "http://api.openweathermap.org/data/2.5/weather?appid={}&units=metric".format(OWM_KEY)
     #POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
-    POLLING_TIMEOUT = 1
+  
 
 # Make a request to Telegram bot and get JSON response
 def makeRequest(url):
