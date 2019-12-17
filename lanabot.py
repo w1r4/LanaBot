@@ -127,7 +127,8 @@ def getAdzan(place):
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
-    html = convert(js, build_direction=build_direction, table_attributes=table_attributes)
+    dump = json.dumps(js)
+    html = convert(dump, build_direction=build_direction, table_attributes=table_attributes)
     return u"%s" % (html)
 
 
