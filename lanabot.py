@@ -123,6 +123,7 @@ def getAdzan(place):
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
+    logger.info(js)
     return json.dumps(js)
 
 
