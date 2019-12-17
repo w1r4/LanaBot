@@ -162,7 +162,7 @@ def handleUpdates(updates):
                 del chats[chatId]
             if (chatId in chats) and (chats[chatId] == "adzanReq"):
                 logger.info("Adzan requested for %s in chat id %d" % (str(loc), chatId))
-                # Send weather to chat id and clear state
+                # Send weather to chat id and clear states
                 sendMessage(getAdzan(loc), chatId)
                 del chats[chatId]                
             continue
