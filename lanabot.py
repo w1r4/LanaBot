@@ -129,7 +129,7 @@ def getAdzan(place):
     logger.debug(js)
     html = convert(js, build_direction=build_direction, table_attributes=table_attributes)
     print(html)
-    return "<pre> %s </pre>" % (getPraytime(js))
+    return "%s" % (getPraytime(js))
 
 
 # Send URL-encoded message to chat id
