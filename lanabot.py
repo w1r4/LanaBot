@@ -65,7 +65,7 @@ def parseConfig():
     URL = "https://api.telegram.org/bot{}/".format(TOKEN)
     OWM_KEY = c.get("Settings", "OWM_KEY")
     URL_OWM = "http://api.openweathermap.org/data/2.5/weather?appid={}&units=metric".format(OWM_KEY)
-    URL_ADZAN = "http://api.aladhan.com/v1/timings/{}?".(ts)
+    URL_ADZAN = "http://api.aladhan.com/v1/timings/{}?".format(ts)
     POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
   
 
