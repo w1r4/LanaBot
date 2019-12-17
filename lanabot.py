@@ -6,6 +6,8 @@ import configparser
 import logging
 import signal
 import sys
+import calendar
+import time
 
 TOKEN = ""
 OWM_KEY = ""
@@ -22,6 +24,9 @@ def getResult(updates):         return updates["result"]
 def getDesc(w):                 return w["weather"][0]["description"]
 def getTemp(w):                 return w["main"]["temp"]
 def getCity(w):                 return w["name"]
+
+# # Lambda functions to parse adzan responses
+def getPray(a):                 return a["data"]["timings"]
 
 logger = logging.getLogger("LanaBot")
 logger.setLevel(logging.DEBUG)
@@ -52,7 +57,7 @@ def configLogging():
 
 # Read settings from configuration file
 def parseConfig():
-    global URL, URL_OWM, POLLING_TIMEOUT
+    global URL, URL_OWM, POLLING_TIMEOUT, URL_ADZAN
     
     c = configparser.ConfigParser()
     c.read("config.ini")
@@ -60,6 +65,7 @@ def parseConfig():
     URL = "https://api.telegram.org/bot{}/".format(TOKEN)
     OWM_KEY = c.get("Settings", "OWM_KEY")
     URL_OWM = "http://api.openweathermap.org/data/2.5/weather?appid={}&units=metric".format(OWM_KEY)
+    URL_ADZAN = "http://api.aladhan.com/v1/timings/"
     POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
   
 
@@ -110,6 +116,16 @@ def getWeather(place):
         js = makeRequest(url)
         logger.debug(js)
         return u"%s \N{DEGREE SIGN}C, %s in %s" % (getTemp(js), getDesc(js), getCity(js))
+    
+def getAdzan(place):
+    ts = calendar.timegm(time.gmtime())
+        lat, lon = place["latitude"], place["longitude"]
+        url = URL_ADZAN +  ts + ? + "&lat=%f&lon=%f&cnt=1" % (lat, lon)
+        logger.info("Requesting adzan time : " + url)
+        js = makeRequest(url)
+        logger.debug(js)
+        return getAdzan(js)
+
 
 # Send URL-encoded message to chat id
 def sendMessage(text, chatId, interface=None):
@@ -145,12 +161,22 @@ def handleUpdates(updates):
                 # Send weather to chat id and clear state
                 sendMessage(getWeather(loc), chatId)
                 del chats[chatId]
+            elif  (chatId in chats) and (chats[chatId] == "adzanReq"): 
+                logger.info("adzan %s in chat id %d" % (str(loc), chatId))
+                sendMessage(getAdzan(loc), chatId)
+                del chats[chatId]
+             else :
+                
             continue
 
         if text == "/weather":
             keyboard = buildCitiesKeyboard()
             chats[chatId] = "weatherReq"
             sendMessage("Select a city", chatId, keyboard)
+        elif text == "/adzan":
+            keyboard = buildCitiesKeyboard()
+            chats[chatId] = "adzanReq"
+            sendMessage("Select a city", chatId, keyboard)            
         elif text == "/start":
             sendMessage("Cahn's Axiom: When all else fails, read the instructions", chatId)
         elif text.startswith("/"):
