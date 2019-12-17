@@ -124,7 +124,7 @@ def getAdzan(place):
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
-    return getAdzan(js)
+    return getPray(js)
 
 
 # Send URL-encoded message to chat id
