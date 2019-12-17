@@ -129,7 +129,7 @@ def getAdzan(place):
     logger.debug(js)
     dump = json.dumps(js)
     html = convert(dump, build_direction=build_direction, table_attributes=table_attributes)
-    return u"%s" % (html)
+    return html
 
 
 # Send URL-encoded message to chat id
