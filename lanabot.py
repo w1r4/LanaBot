@@ -8,10 +8,14 @@ import signal
 import sys
 import calendar
 import time
+from json2table import convert
 
 TOKEN = ""
 OWM_KEY = ""
 POLLING_TIMEOUT = None
+
+build_direction = "LEFT_TO_RIGHT"
+table_attributes = {"style" : "width:100%"}
 
 # Lambda functions to parse updates from Telegram
 def getText(update):            return update["message"]["text"]
@@ -123,7 +127,8 @@ def getAdzan(place):
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
-    return u"%s" % (json.dumps(js),sort_keys=True,indent=4, separators=(',', ': '))
+    html = convert(js, build_direction=build_direction, table_attributes=table_attributes)
+    return u"%s" % (html)
 
 
 # Send URL-encoded message to chat id
