@@ -58,14 +58,14 @@ def configLogging():
 # Read settings from configuration file
 def parseConfig():
     global URL, URL_OWM, POLLING_TIMEOUT, URL_ADZAN
-    
+    ts = calendar.timegm(time.gmtime())
     c = configparser.ConfigParser()
     c.read("config.ini")
     TOKEN = c.get("Settings", "TOKEN")
     URL = "https://api.telegram.org/bot{}/".format(TOKEN)
     OWM_KEY = c.get("Settings", "OWM_KEY")
     URL_OWM = "http://api.openweathermap.org/data/2.5/weather?appid={}&units=metric".format(OWM_KEY)
-    URL_ADZAN = "http://api.aladhan.com/v1/timings/"
+    URL_ADZAN = "http://api.aladhan.com/v1/timings/{}?".(ts)
     POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
   
 
@@ -118,9 +118,8 @@ def getWeather(place):
         return u"%s \N{DEGREE SIGN}C, %s in %s" % (getTemp(js), getDesc(js), getCity(js))
     
 def getAdzan(place):
-    ts = calendar.timegm(time.gmtime())
     lat, lon = place["latitude"], place["longitude"]
-    url = URL_ADZAN +  ts + "?" + "&lat=%f&lon=%f&cnt=1" % (lat, lon)
+    url = URL_ADZAN + "&lat=%f&lon=%f&cnt=1" % (lat, lon)
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
