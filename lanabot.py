@@ -128,6 +128,7 @@ def getAdzan(place):
     js = makeRequest(url)
     logger.debug(js)
     html = convert(js, build_direction=build_direction, table_attributes=table_attributes)
+    print(html)
     return "%s" % (html)
 
 
