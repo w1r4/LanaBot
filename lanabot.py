@@ -55,12 +55,12 @@ def parseConfig():
     global URL, URL_OWM, POLLING_TIMEOUT
     
     c = configparser.ConfigParser()
-    #c.read("config.ini")
-    #TOKEN = c.get("Settings", "TOKEN")
+    c.read("config.ini")
+    TOKEN = c.get("Settings", "TOKEN")
     URL = "https://api.telegram.org/bot{}/".format(TOKEN)
-    #OWM_KEY = c.get("Settings", "OWM_KEY")
+    OWM_KEY = c.get("Settings", "OWM_KEY")
     URL_OWM = "http://api.openweathermap.org/data/2.5/weather?appid={}&units=metric".format(OWM_KEY)
-    #POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
+    POLLING_TIMEOUT = c.get("Settings", "POLLING_TIMEOUT")
   
 
 # Make a request to Telegram bot and get JSON response
