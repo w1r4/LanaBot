@@ -26,7 +26,7 @@ def getTemp(w):                 return w["main"]["temp"]
 def getCity(w):                 return w["name"]
 
 # # Lambda functions to parse adzan responses
-def getPraytime(a):                 return a["timings"]
+def getPraytime(a):                 return a["data"]["timings"]["Dhuhr"]
 
 logger = logging.getLogger("LanaBot")
 logger.setLevel(logging.DEBUG)
