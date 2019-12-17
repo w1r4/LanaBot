@@ -157,7 +157,7 @@ def handleUpdates(updates):
             # Was weather previously requested?
             if (chatId in chats) and (chats[chatId] == "weatherReq"):
                 logger.info("Weather requested for %s in chat id %d" % (str(loc), chatId))
-                # Send weather to chat id and clear state
+                # Send weather to chat id and clear stat
                 sendMessage(getWeather(loc), chatId)
                 del chats[chatId]
             elif (chatId in chats) and (chats[chatId] == "adzanReq"): 
