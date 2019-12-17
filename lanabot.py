@@ -161,11 +161,11 @@ def handleUpdates(updates):
                 # Send weather to chat id and clear state
                 sendMessage(getWeather(loc), chatId)
                 del chats[chatId]
-            elif  (chatId in chats) and (chats[chatId] == "adzanReq"): 
+            elif (chatId in chats) and (chats[chatId] == "adzanReq"): 
                 logger.info("adzan %s in chat id %d" % (str(loc), chatId))
                 sendMessage(getAdzan(loc), chatId)
                 del chats[chatId]
-             else :
+            else:
                 
             continue
 
