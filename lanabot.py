@@ -157,15 +157,10 @@ def handleUpdates(updates):
             # Was weather previously requested?
             if (chatId in chats) and (chats[chatId] == "weatherReq"):
                 logger.info("Weather requested for %s in chat id %d" % (str(loc), chatId))
-                # Send weather to chat id and clear stat
+                # Send weather to chat id and clear state
                 sendMessage(getWeather(loc), chatId)
                 del chats[chatId]
-            elif (chatId in chats) and (chats[chatId] == "adzanReq"): 
-                logger.info("adzan %s in chat id %d" % (str(loc), chatId))
-                sendMessage(getAdzan(loc), chatId)
-                del chats[chatId]
-            else:   
-                continue
+            continue
 
         if text == "/weather":
             keyboard = buildCitiesKeyboard()
