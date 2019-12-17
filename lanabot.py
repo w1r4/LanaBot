@@ -126,7 +126,7 @@ def getAdzan(place):
     return json.dumps(js)
 
 
-# Send URL-encoded message to chat id
+# Send URL-encoded message to chat ids
 def sendMessage(text, chatId, interface=None):
     text = text.encode('utf-8', 'strict')                                                       
     text = urllib.parse.quote_plus(text)
