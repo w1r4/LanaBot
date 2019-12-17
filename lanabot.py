@@ -30,7 +30,7 @@ def getTemp(w):                 return w["main"]["temp"]
 def getCity(w):                 return w["name"]
 
 # # Lambda functions to parse adzan responses
-def getPraytime(a):                 return a["data"]["timings"]["Dhuhr"]
+def getPraytime(a):                 return a["data"]["timings"]
 
 logger = logging.getLogger("LanaBot")
 logger.setLevel(logging.DEBUG)
@@ -129,7 +129,7 @@ def getAdzan(place):
     logger.debug(js)
     html = convert(js, build_direction=build_direction, table_attributes=table_attributes)
     print(html)
-    return "<pre> %s </pre>" % (html)
+    return "<pre> %s </pre>" % (getPraytime(js))
 
 
 # Send URL-encoded message to chat id
