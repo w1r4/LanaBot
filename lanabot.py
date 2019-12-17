@@ -123,7 +123,7 @@ def getWeather(place):
     
 def getAdzan(place):
     lat, lon = place["latitude"], place["longitude"]
-    url = URL_ADZAN + "latitude=%f&longitude=%f&method=2" % (lat, lon)
+    url = URL_ADZAN + "latitude=%f&longitude=%f&method=11" % (lat, lon)
     logger.info("Requesting adzan time : " + url)
     js = makeRequest(url)
     logger.debug(js)
