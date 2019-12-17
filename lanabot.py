@@ -165,9 +165,8 @@ def handleUpdates(updates):
                 logger.info("adzan %s in chat id %d" % (str(loc), chatId))
                 sendMessage(getAdzan(loc), chatId)
                 del chats[chatId]
-            else:
-                
-            continue
+            else:   
+                continue
 
         if text == "/weather":
             keyboard = buildCitiesKeyboard()
