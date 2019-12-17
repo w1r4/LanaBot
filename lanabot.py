@@ -25,7 +25,7 @@ def getDesc(w):                 return w["weather"][0]["description"]
 def getTemp(w):                 return w["main"]["temp"]
 def getCity(w):                 return w["name"]
 
-# # Lambda functions to parse adzan responses
+# # Lambda functions to parse adzan respons
 def getPraytime(a):                 return a["data"]["timings"]["Dhuhr"]
 
 logger = logging.getLogger("LanaBot")
